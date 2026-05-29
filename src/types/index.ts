@@ -9,4 +9,8 @@ export interface recipeType {
     image: string;
     rating: number;
     mealType: string[];
+    reviewCount: number;
+    prepTimeMinutes: number;
+    cookTimeMinutes: number;
+    servings: number;
 }

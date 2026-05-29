@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { getAllRecipes } from "../services/recipeService";
 import { recipeType } from "../types";
+import Link from "next/link";
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<recipeType[]>([]);
@@ -54,10 +55,11 @@ const RecipeList = () => {
                             <div className="flex justify-between text-sm text-gray-500 mt-3">
                                 <span>⭐ {recipe.rating}</span>
                             </div>
-
-                            <button className="mt-4 w-full bg-black text-white py-2 rounded-xl hover:bg-gray-800 transition">
-                                View Recipe
-                            </button>
+                            <Link href={`/recipes/${recipe.id}`}>
+                                <button className="mt-4 w-full bg-black text-white py-2 rounded-xl hover:bg-gray-800 transition">
+                                    View Recipe
+                                </button>
+                            </Link>
 
                         </div>
                     </div>
