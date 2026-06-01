@@ -1,9 +1,9 @@
-import RecipeList from "@/src/components/recipeList"
+import AllRecipes from "@/src/components/allRecipes"
 
 const page = () => {
   return (
     <div>
-        <RecipeList />
+        <AllRecipes />
     </div>
   )
 }

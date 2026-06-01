@@ -1,3 +1,4 @@
+import TrendingRecipes from "./trendingRecipes"
 import Category from "./category"
 import Hero from "./hero"
 
@@ -6,6 +7,7 @@ const LandingPage = () => {
     <div>
         <Hero />
         <Category />
+        <TrendingRecipes />
     </div>
   )
 }
