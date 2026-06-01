@@ -13,4 +13,6 @@ export interface recipeType {
     prepTimeMinutes: number;
     cookTimeMinutes: number;
     servings: number;
+    caloriesPerServing: number;
 }
+
