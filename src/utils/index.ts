@@ -36,3 +36,13 @@ export const categories = [
     bg: "bg-red-500",
   },
 ];
+
+export const cuisineOptions = ["Italian", "Asian", "Mexican", "American", "Pakistani", "Japanese", "Moroccan", "Korean", "Greek", "Thai", "Indian", "Turkish", "Russian", "Lebanese", "Brazilian", "Mediterranean"];
+
+export const difficultyOptions = ["Easy", "Medium"];
+
+export const mealTypeOptions = ["Breakfast", "Lunch", "Snack", "Dinner", "Side Dish", "Appetizer", "Beverage", "Dessert"];
+
+export const calorieOptions = ["Under 300", "300-500", "500+"];
+
+export const ratingOptions = ["4+", "4.5+", "4.7+"];
