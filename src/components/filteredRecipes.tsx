@@ -5,6 +5,7 @@ import { getAllRecipes } from "../services/recipeService";
 import { recipeType } from "../types";
 import RecipeList from "../components/recipeList";
 import { calorieOptions, cuisineOptions, difficultyOptions, mealTypeOptions, ratingOptions } from "../utils";
+import { useSearchParams } from "next/navigation";
 
 const RecipesPage = () => {
   const [recipes, setRecipes] = useState<recipeType[]>([]);
@@ -12,10 +13,13 @@ const RecipesPage = () => {
   // Sidebar Toggle
   const [showFilters, setShowFilters] = useState(false);
 
+  const searchParams = useSearchParams();
+  const categoryFromURL = searchParams.get("category") || "";
+
   // Filters
   const [selectedCuisine, setSelectedCuisine] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
-  const [selectedMealType, setSelectedMealType] = useState("");
+  const [selectedMealType, setSelectedMealType] = useState(categoryFromURL);
   const [selectedCalories, setSelectedCalories] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
 

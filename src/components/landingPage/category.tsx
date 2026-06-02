@@ -1,4 +1,4 @@
-import { ChefHatIcon } from "lucide-react";
+import Link from "next/link";
 import { categories } from "../../utils";
 
 
@@ -23,22 +23,26 @@ const Category = () => {
           const Icon = category.icon;
 
           return (
-            <div
+             <Link
+              href={`/recipes?category=${category.title}`}
               key={index}
-              className="bg-gray-50 hover:bg-gray-100 transition rounded-3xl p-8 flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-lg cursor-pointer"
             >
-
               <div
-                className={`${category.bg} p-5 rounded-2xl`}
+                className="bg-gray-50 hover:bg-gray-100 transition rounded-3xl p-8 flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-lg cursor-pointer"
               >
-                <Icon className="text-white" size={32} />
+
+                <div
+                  className={`${category.bg} p-5 rounded-2xl`}
+                >
+                  <Icon className="text-white" size={32} />
+                </div>
+
+                <h2 className="text-lg font-semibold text-gray-800">
+                  {category.title}
+                </h2>
+
               </div>
-
-              <h2 className="text-lg font-semibold text-gray-800">
-                {category.title}
-              </h2>
-
-            </div>
+            </Link>
           );
         })}
 
