@@ -15,6 +15,7 @@ const RecipesPage = () => {
 
   const searchParams = useSearchParams();
   const categoryFromURL = searchParams.get("category") || "";
+  const searchFromUrl = searchParams.get("search") || "";
 
   // Filters
   const [selectedCuisine, setSelectedCuisine] = useState("");
@@ -22,6 +23,7 @@ const RecipesPage = () => {
   const [selectedMealType, setSelectedMealType] = useState(categoryFromURL);
   const [selectedCalories, setSelectedCalories] = useState("");
   const [selectedRating, setSelectedRating] = useState("");
+  const [searchTerm, setSearchTerm] = useState(searchFromUrl);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +33,10 @@ const RecipesPage = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setSearchTerm(searchFromUrl);
+  }, [searchFromUrl]);
 
   // Filter Logic
   const filteredRecipes = recipes.filter((recipe) => {
@@ -61,12 +67,22 @@ const RecipesPage = () => {
       (selectedRating === "4.5+" && recipe.rating >= 4.5) ||
       (selectedRating === "4.7+" && recipe.rating >= 4.7);
 
+    const searchMatch =
+      !searchTerm ||
+      recipe.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase()) ||
+      recipe.cuisine
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
     return (
       cuisineMatch &&
       difficultyMatch &&
       mealMatch &&
       calorieMatch &&
-      ratingMatch
+      ratingMatch &&
+      searchMatch
     );
   });
 
@@ -78,7 +94,7 @@ const RecipesPage = () => {
 
         <div>
           <h1 className="text-3xl font-bold text-gray-800">
-            Explore Recipes 
+            Explore Recipes
           </h1>
 
           <p className="text-gray-500 mt-1">
@@ -121,10 +137,9 @@ const RecipesPage = () => {
             z-50
             transition-all duration-300
             
-            ${
-              showFilters
-                ? "translate-x-0"
-                : "-translate-x-full lg:translate-x-0"
+            ${showFilters
+              ? "translate-x-0"
+              : "-translate-x-full lg:translate-x-0"
             }
           `}
         >
@@ -171,11 +186,10 @@ const RecipesPage = () => {
                   onClick={() => setSelectedCuisine(item)}
                   className={`px-4 py-2 rounded-full text-sm transition-all duration-300
 
-                  ${
-                    selectedCuisine === item
+                  ${selectedCuisine === item
                       ? "bg-black text-white shadow-lg scale-105"
                       : "bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-500"
-                  }
+                    }
                   
                   `}
                 >
@@ -191,7 +205,7 @@ const RecipesPage = () => {
           <div className="mb-8">
 
             <h3 className="font-semibold text-gray-700 mb-4">
-               ⚡ Difficulty
+              ⚡ Difficulty
             </h3>
 
             <div className="flex flex-wrap gap-3">
@@ -202,11 +216,10 @@ const RecipesPage = () => {
                   onClick={() => setSelectedDifficulty(item)}
                   className={`px-4 py-2 rounded-full text-sm transition-all duration-300
 
-                  ${
-                    selectedDifficulty === item
+                  ${selectedDifficulty === item
                       ? "bg-black text-white shadow-lg scale-105"
                       : "bg-gray-100 text-gray-600 hover:bg-yellow-100 hover:text-yellow-600"
-                  }
+                    }
                   
                   `}
                 >
@@ -233,11 +246,10 @@ const RecipesPage = () => {
                   onClick={() => setSelectedMealType(item)}
                   className={`px-4 py-2 rounded-full text-sm transition-all duration-300
 
-                  ${
-                    selectedMealType === item
+                  ${selectedMealType === item
                       ? "bg-black text-white shadow-lg scale-105"
                       : "bg-gray-100 text-gray-600 hover:bg-green-100 hover:text-green-600"
-                  }
+                    }
                   
                   `}
                 >
@@ -264,11 +276,10 @@ const RecipesPage = () => {
                   onClick={() => setSelectedCalories(item)}
                   className={`px-4 py-2 rounded-full text-sm transition-all duration-300
 
-                  ${
-                    selectedCalories === item
+                  ${selectedCalories === item
                       ? "bg-black text-white shadow-lg scale-105"
                       : "bg-gray-100 text-gray-600 hover:bg-pink-100 hover:text-pink-600"
-                  }
+                    }
                   
                   `}
                 >
@@ -294,11 +305,10 @@ const RecipesPage = () => {
                   onClick={() => setSelectedRating(item)}
                   className={`px-4 py-2 rounded-full text-sm transition-all duration-300
 
-                  ${
-                    selectedRating === item
+                  ${selectedRating === item
                       ? "bg-black text-white shadow-lg scale-105"
                       : "bg-gray-100 text-gray-600 hover:bg-yellow-100 hover:text-yellow-600"
-                  }
+                    }
                   
                   `}
                 >
