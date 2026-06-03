@@ -1,12 +1,10 @@
-import AllRecipes from "@/src/components/allRecipes"
-import FilteredRecipes from "@/src/components/filteredRecipes"
+import { Suspense } from "react";
+import FilteredRecipes from "@/src/components/filteredRecipes";
 
-const page = () => {
+export default function Page() {
   return (
-    <div>
-        <FilteredRecipes />
-    </div>
-  )
+    <Suspense fallback={<div>Loading recipes...</div>}>
+      <FilteredRecipes />
+    </Suspense>
+  );
 }
-
-export default page
