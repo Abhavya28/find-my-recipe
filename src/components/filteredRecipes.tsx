@@ -36,7 +36,8 @@ const RecipesPage = () => {
 
   useEffect(() => {
     setSearchTerm(searchFromUrl);
-  }, [searchFromUrl]);
+    setSelectedMealType(categoryFromURL);
+  }, [searchFromUrl, categoryFromURL]);
 
   // Filter Logic
   const filteredRecipes = recipes.filter((recipe) => {
@@ -327,6 +328,7 @@ const RecipesPage = () => {
               setSelectedMealType("");
               setSelectedCalories("");
               setSelectedRating("");
+              setSearchTerm("");
             }}
             className="w-full mt-4 bg-red-500 hover:bg-red-600 text-white py-3 rounded-2xl font-medium transition-all duration-300 shadow-md hover:shadow-lg"
           >
